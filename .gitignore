@@ -1,0 +1,12 @@
+media/
+out/
+*.mp4
+*.mov
+*.wav
+*.flac
+node_modules/
+__pycache__/
+.venv/
+.env
+client_secret*.json
+token*.json
