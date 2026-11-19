@@ -2,7 +2,7 @@
 
 > 対象: YouTube の Content ID による著作権の申し立て（claim）と、著作権侵害の警告（strike）の違い、異議申し立て・再審査請求の流れ、収益への影響、3回でチャンネル停止になるルール、フリーBGMなどへの誤った申し立ての扱い。
 > 使う場面: BGM・効果音・素材を選ぶとき、非公開アップロード後に申し立てを確認するとき、申し立てや警告を受けたとき。
-> 調査日: 2026-11-19 ／ mc_version: 該当なし（Minecraft の映像・音楽の権利は [Mojang利用ガイドライン.md](../../../minecraft_physics/knowledge/rights/Mojang利用ガイドライン.md) と [マイクラ音楽の使用.md](../../../minecraft_physics/knowledge/rights/マイクラ音楽の使用.md) を参照）
+> 調査日: 2026-11-19 ／ mc_version: 該当なし（Minecraft の映像・音楽の権利は [Mojang利用ガイドライン.md](https://github.com/mitsuo822/minecraft_physics/blob/main/knowledge/rights/Mojang利用ガイドライン.md) と [マイクラ音楽の使用.md](https://github.com/mitsuo822/minecraft_physics/blob/main/knowledge/rights/マイクラ音楽の使用.md) を参照）
 > 関連: [ショートの仕様.md](ショートの仕様.md), [収益化の条件.md](収益化の条件.md), [../audio/BGMと効果音.md](../audio/BGMと効果音.md), [../legal/引用と著作権.md](../legal/引用と著作権.md), [チャプター・カード・終了画面.md](チャプター・カード・終了画面.md)
 
 ## 要点
@@ -177,7 +177,7 @@ YouTube 側の公式説明で、誤った申し立てに関係するのは次の
 ## わかっていないこと・要確認
 - 警告を90日以内に3回受けるとチャンネルが停止されるとされる一方、コピーライト スクール未修了の警告は期限切れにならない。未修了で90日を超えて3回目を受けた場合の扱いは、日本語ヘルプだけでは読み取れない。英語版（answer/2814000?hl=en）で確認する。
 - コピーライト スクールの修了が期限切れの条件になった時期は未確認。
-- Minecraft のゲーム映像そのもの、および Minecraft の公式楽曲（C418 など）に Content ID の申し立てが付く例があるかは、この調査では確かめていない。mcp 側の [マイクラ音楽の使用.md](../../../minecraft_physics/knowledge/rights/マイクラ音楽の使用.md) で扱う。
+- Minecraft のゲーム映像そのもの、および Minecraft の公式楽曲（C418 など）に Content ID の申し立てが付く例があるかは、この調査では確かめていない。mcp 側の [マイクラ音楽の使用.md](https://github.com/mitsuo822/minecraft_physics/blob/main/knowledge/rights/マイクラ音楽の使用.md) で扱う。
 - VOICEVOX の音声に申し立てが付く例があるかは未調査（[../audio/VOICEVOX利用規約.md](../audio/VOICEVOX利用規約.md) の範囲）。
 - DOVA-SYNDROME（OpenTracks）のヘルプ本文は、転送先の opentracks.com がプロキシで拒否され読めなかった。規約の現行の文言を要確認。検索要約で得た内容は次のとおり（いずれも検索要約のみ・原文未読）。 【未確認】[S6][S7]
   - DOVA-SYNDROME のヘルプ（英語版）は、楽曲を YouTube の Content ID などのフィンガープリント登録システムに登録することを禁止し、規約違反として扱う。 【未確認】[S6]
