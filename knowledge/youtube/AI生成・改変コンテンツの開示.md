@@ -13,7 +13,7 @@
 - **第三者の声の合成ナレーション**: 2024年3月の公式ブログは「synthetically generating a person’s voice to narrate a video」（訳: ある人物の声を合成して動画のナレーションにする）を、開示が必要な「Using the likeness of a realistic person」の例に挙げた。2026-11-19 時点のヘルプには、架空キャラクターの音声合成ナレーションを名指しした記述はない。【一次】[S3][S1]
 - 開示は YouTube Studio の［属性］→［AI の使用］で「はい／いいえ」を選ぶ。YouTube Data API では2024年10月30日から `status.containsSyntheticMedia` を `videos.insert`・`videos.update` で設定できる。【一次】[S1][S2][S6]
 - 2026年5月からラベルの位置が変わり、写真のようにリアルな・大幅に改変された AI コンテンツは、長尺ではプレーヤーの直下（説明欄の上）、ショートでは動画に重ねて表示される。非現実的・アニメ・軽微なものは説明欄を開いた中に出る。【一次】[S4][S5]
-- 2026年5月から、申告がなくても、システムが写真のようにリアルな AI の大きな使用を検出すると自動でラベルを付ける。誤りは「いいえ」に直せるが、YouTube の AI ツール（Veo、Dream Screen）で作ったもの、C2PA メタデータで AI 生成とわかるもの、手動審査でラベルを付けたものは外せない。【一次】[S1][S4][S5]
+- 2026年5月から、申告がなくても、システムが写真のようにリアルな AI の大きな使用を検出すると自動でラベルを付ける。誤りは「いいえ」に直せるが、YouTube の AI ツール（Veo、Dream Screen）で作ったもの、C2PA メタデータを含むもの（ヘルプは「content containing C2PA metadata」、公式ブログは「C2PA metadata indicating they were fully generative AI」と書き、範囲の書き方が違う）、手動審査でラベルを付けたものは外せない。【一次】[S1][S4][S5]
 - YouTube は、開示（ラベル）だけでは推薦のされ方や収益化の資格は変わらないと繰り返し書いている。【一次】[S1][S4][S5]
 - 開示を繰り返し意図的に怠ると、ラベルの手動適用、コンテンツの削除、YPP の参加停止などのペナルティがありうる。【一次】[S1][S2]
 - 肖像検出（likeness detection）は2025年に YPP のクリエイター向けに始まり、2026年5月19日に18歳以上の全クリエイターへ拡大。2026-11-19 時点のヘルプでは検出は顔のみで、声は導入を進めている段階。【一次】[S7][S8][S10][S11]
@@ -105,7 +105,8 @@
 - 2026年5月から新しい内部シグナルを導入し、クリエイターが AI の使用を申告せず、システムが写真のようにリアルな AI の大きな使用を検出した場合は自動でラベルを付ける。【一次】[S4]
   > 「If a creator doesn’t specify whether or not they used AI, but our systems detect significant photorealistic AI use, we will now automatically apply a label.」[S4]
 - 誤検出は多くの場合、［属性］の AI 使用アンケートで［いいえ］にすると外せる。自動ラベルの付いた動画は、コンテンツ一覧の「Other notices」の列でまとめて確認できる（2026年8月ごろの追記。日本語 UI での列名は未確認）。【一次】[S1][S5]
-- 外せないもの: YouTube の AI ツール（Veo、Dream Screen など）で作ったもの、AI で生成されたことを示す C2PA メタデータを含むもの、手動審査でラベルを付けたもの。【一次】[S1][S2][S4][S5]
+- 外せないもの: YouTube の AI ツール（Veo、Dream Screen など）で作ったもの、C2PA メタデータを含むもの、手動審査でラベルを付けたもの。【一次】[S1][S2][S4][S5]
+  - C2PA の範囲は資料で書き方が違う。ヘルプ（2026-11-19）は「content containing C2PA metadata」、公式ブログ（2026-05-27）は「Content containing C2PA metadata indicating they were fully generative AI.」。TeamYouTube の投稿（2026-05）も、完全に AI 生成であることを示す検証済み（verified）の C2PA メタデータと書く。【一次】[S1][S4][S5]
 - Gemini Omni でリミックスしたショートには、電子透かしと識別用メタデータが付き、元の動画へのリンクが付く（2026-05-19 の発表）。【一次】[S10]
 
 ### 7. 開示しない場合のリスク
@@ -125,7 +126,7 @@
 
 ### 9. 二次情報との食い違い
 
-- ゆっくり解説の制作ツールを販売する事業者の note 記事は、収益化の通過条件として「AIラベルを必ずチェックする」を挙げている。公式の基準では、開示が必要なのは本物のように見える（写真のようにリアルな）AI コンテンツで、ゲーム映像や台本の生成は不要とされている。【二次】[S18]（公式: [S1][S2][S5]）
+- ゆっくり動画の制作ツール（『ゆっくり自動化ツール』。記事内に購入リンクと価格あり）を宣伝する筆者の note 記事は、収益化の通過条件として「AIラベルを必ずチェックする」を挙げている。公式の基準では、開示が必要なのは本物のように見える（写真のようにリアルな）AI コンテンツで、ゲーム映像や台本の生成は不要とされている。【二次】[S18]（公式: [S1][S2][S5]）
 
 ## このチャンネルでの使い方（提案）
 
@@ -165,5 +166,5 @@
 - [S14] YouTube policy updates（ポリシー更新の一覧） — YouTube ヘルプ — https://support.google.com/youtube/answer/10008196?hl=en — 最新の記載は2026年11月 — 取得: 2026-11-19 — 原文: 読んだ
 - [S15] Our approach to responsible AI innovation — Jennifer Flannery O'Connor、Emily Moxley（YouTube 公式ブログ） — https://blog.youtube/inside-youtube/our-approach-to-responsible-ai-innovation/ — 2023-11-14 — 取得: 2026-11-19 — 原文: 読んだ
 - [S16] YouTube channel monetization policies — YouTube ヘルプ — https://support.google.com/youtube/answer/1311392?hl=en — 更新日: 不明 — 取得: 2026-11-19 — 原文: 読んだ
-- [S17] 🔎 FAQ: Reused Content & YouTube’s Partner Program — Rob（TeamYouTube）、YouTube ヘルプ コミュニティ — https://support.google.com/youtube/community-guide/271248162/?hl=en — 公開日: ページ上で未確認 — 取得: 2026-11-19 — 原文: 読んだ
+- [S17] 🔎 FAQ: Reused Content & YouTube’s Partner Program — Rob（TeamYouTube）、YouTube ヘルプ コミュニティ — https://support.google.com/youtube/community-guide/271248162/?hl=en — 公開日・更新日: 不明（ページ上に表示がない） — 取得: 2026-11-19 — 原文: 読んだ（本文はページの HTML の埋め込みデータにある）
 - [S18] 【基礎から学ぶゆっくり解説】「ゆっくり動画、収益化できない」はもう古い！…（2026年最新版） — SS@ゆっくり編集効率化（note、制作ツールの販売者） — https://note.com/yukkuri_auto/n/n6da3c97b7b4f — 2025-06-11（記事の表示日） — 取得: 2026-11-19 — 原文: 読んだ
