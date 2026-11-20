@@ -3,7 +3,7 @@
 > 対象: YouTube Data API v3 で動画を上げるときの仕様。videos.insert のクォータ、未監査プロジェクトの非公開制限（2026-11-02 に撤回）、監査とクォータ拡張、OAuth、予約公開（publishAt）、サムネイル設定、字幕のアップロード、再開可能アップロード。
 > 使う場面: movie リポジトリの投稿スクリプトを作る・直すとき。投稿前にメタデータの設定項目を確かめるとき。
 > 調査日: 2026-11-19 ／ mc_version: 対象外（MCに関係しない）
-> 関連: [多言語化と自動吹き替え.md](多言語化と自動吹き替え.md), [AI生成・改変コンテンツの開示.md](AI生成・改変コンテンツの開示.md), [ショートの仕様.md](ショートの仕様.md), [アナリティクス指標.md](アナリティクス指標.md)
+> 関連: [多言語化と自動吹き替え.md](多言語化と自動吹き替え.md), [AI生成・改変コンテンツの開示.md](AI生成・改変コンテンツの開示.md), [ショートの仕様.md](ショートの仕様.md), [アナリティクス指標.md](アナリティクス指標.md), [../planning/サムネイル.md](../planning/サムネイル.md)
 
 ## 要点
 - **2026-11-02 に、未監査のAPIプロジェクトから上げた動画を非公開に制限する方針（2020-07-28 から）が撤回された。** 【一次】[S2][S1]
@@ -18,6 +18,7 @@
 - 再開可能アップロードでは、5xx（500/502/503/504）は指数バックオフで再開する。セッションURIには寿命があり、期限切れだと404になる。 【一次】[S8]
 - 2026-11-16 から paidProductPlacementDetails.hasPaidProductPlacement は既定で false にならない。有料プロダクト プレースメントがないと申告するには、明示的に false を送る。 【一次】[S2]
 - ショートのカスタムサムネイルも thumbnails.set で設定できるようになった（2026-11-03。動画の処理完了後に呼ぶ）。サムネイルの上限は 2026-09-14 に 2MB から 50MB に上がった。 【一次】[S2][S6]
+- ただし YouTube ヘルプ（更新日不明、2026-11-19 取得）は、ショートのカスタムサムネイルは現在パソコン版の YouTube Studio でのみ追加できると書いており、API の記述と食い違う。ヘルプは API に触れていない（[../planning/サムネイル.md](../planning/サムネイル.md) にも同じ旨を書いた）。 【一次】[S6][S12]
 
 ## 詳細
 
@@ -168,6 +169,9 @@ videos.update で publishAt を設定するときは、すでに非公開でも 
 カスタムサムネイルを設定する権限がないアカウントでは 403 forbidden になる（権限の条件はこのページには書かれていない）。 【一次】[S6]
 > 「The authenticated user doesn't have permissions to upload and set custom video thumbnails.」[S6]
 
+一方、YouTube ヘルプ『Add custom thumbnails on YouTube』（更新日不明、2026-11-19 取得）は、ショートのカスタムサムネイルを追加できるのは現在パソコン版の YouTube Studio だけだと書いている。このヘルプは API に触れておらず、2026-11-03 の API 対応より前に書かれたものかどうかは更新日がないためわからない。出典同士の食い違いとして [../planning/サムネイル.md](../planning/サムネイル.md) にも書いた。 【一次】[S12][S2]
+> 「Custom thumbnails for Shorts are currently only available to add in YouTube Studio on a computer.」[S12]
+
 改訂履歴: 2026-09-14 に上限が 2MB→50MB、2026-09-11 に動画のサムネイル取得で fhd（1080p）・qhd（1440p）・uhd（4K）が一部の動画で返るようになった、2026-11-03 にショートのカスタムサムネイルに対応（thumbnails リソースに shortsAspectRatio を追加）。 【一次】[S2]
 
 ### 8. 字幕（captions.insert）
@@ -213,14 +217,14 @@ videos.update で publishAt を設定するときは、すでに非公開でも 
 ## このチャンネルでの使い方（提案）
 > ※この節は上の事実から導いた提案で、事実ではない。
 - **投稿スクリプトでは status.privacyStatus を必ず "private" と明示する。** 未監査でも非公開に固定されなくなったので、指定を忘れると即公開になる。人の確認を経てから公開する関門は、APIの制限ではなく自分たちの運用で守る。（根拠: [S1][S2]）
-- `minecraft_physics/docs/全体設計.md` にある、監査を受けていないAPIプロジェクトからの投稿は非公開に固定されるという記述は、2026-11-02 以降は当てはまらない。非公開を明示して上げる、という書き方に直す。（根拠: [S2]）
+- `minecraft_physics/docs/全体設計.md` にあった、監査を受けていないAPIプロジェクトからの投稿は非公開に固定されるという記述は、2026-11-02 以降は当てはまらない。2026-11-20 に、非公開を明示して上げるという書き方に直した（[全体設計.md §3](https://github.com/mitsuo822/minecraft_physics/blob/main/docs/全体設計.md)）。（根拠: [S2]）
 - 公開の操作も API でやるなら、人が確認したあとに videos.update で privacyStatus=private と publishAt を一緒に送る。過去時刻を入れると即公開になるので、送る前に時刻を検査する。（根拠: [S5]）
 - 1本あたりの共通枠の消費は、thumbnails.set 50 + 字幕1言語 400 + 再生リスト追加 50 = 500ユニット程度（計算）。既定の10,000ユニットで1日20本分なので、監査やクォータ増量は当面いらない。字幕を多言語で上げると1言語400ずつ増える。（根拠: [S3][S7]）
 - OAuth のスコープは youtube.upload と、字幕を上げるなら youtube.force-ssl を要求する。同意画面が Testing のままだと7日ごとに再認可が要るので、投稿スクリプトはトークンの失効を検出して再認可を促す作りにする。（根拠: [S7][S9][S10]）
 - アップロードはクライアントライブラリの再開可能アップロードを使い、5xx は指数バックオフで再試行、404 なら最初からやり直す。チャンク分割は使わない。（根拠: [S8]）
 - 仕様の確認は英語版のリファレンス（`?hl=en`）で行う。日本語版は更新日が英語版より古いことがある（2026-11-19 時点で videos.insert の日本語版は 2026-10-15、英語版は 2026-11-12）。（根拠: [S1][S11]）
 - 毎回、selfDeclaredMadeForKids・containsSyntheticMedia・paidProductPlacementDetails.hasPaidProductPlacement を明示して送る。とくに有料プロダクト プレースメントは既定値がなくなったので false を送る。（根拠: [S2][S5]）
-- ショートのサムネイルは、processingDetails.processingStatus が succeeded になるまで待ってから thumbnails.set を呼ぶ。（根拠: [S6]）
+- ショートのサムネイルは、processingDetails.processingStatus が succeeded になるまで待ってから thumbnails.set を呼ぶ。ヘルプはパソコン版 Studio でのみと書いているので、最初の数本は公開前の人の確認で反映されているかを Studio で見て、反映されていなければ Studio で付ける。（根拠: [S2][S6][S12]）
 - テスト投稿は notifySubscribers=False にして、登録者に通知が飛ばないようにする。（根拠: [S1]）
 
 ## わかっていないこと・要確認
@@ -229,6 +233,7 @@ videos.update で publishAt を設定するときは、すでに非公開でも 
 - 日本語版リファレンスの最終更新日（2026-10-15）が撤回の告知日（2026-11-02）より前なのに撤回後の内容が書かれている理由。日本語版が英語版の改訂をどこまで反映しているかは確認していない。
 - uploadLimitExceeded（アップロードできる本数を超えた）の具体的な本数は、リファレンスに書かれていない。
 - カスタムサムネイルを設定できる権限の条件（電話番号の確認など）は thumbnails.set のページにない。チャンネル機能の条件は別ファイルの範囲。
+- ヘルプ [S12] の、ショートのカスタムサムネイルはパソコン版 Studio でのみ追加できるという記述が、2026-11-03 の API 対応のあとも有効か。API で付けたショートのサムネイルが実際に反映されるかは、まだ自分たちで確かめていない。
 - OAuth の同意画面を本番（In production）にするときの Google の審査要件は未調査。
 - captions.insert で受け付ける字幕ファイルの形式の一覧（captions リソースのページは未読）。
 - 多言語音声トラックや自動吹き替えを API で操作する項目は、読んだページ（videos リソース、改訂履歴）には見当たらなかった。
@@ -246,3 +251,4 @@ videos.update で publishAt を設定するときは、すでに非公開でも 
 - [S9] Implement authorization — Google for Developers（YouTube Data API） — https://developers.google.com/youtube/v3/guides/authentication?hl=en — 最終更新 2026-11-12 — 取得: 2026-11-19 — 原文: 読んだ
 - [S10] Using OAuth 2.0 to Access Google APIs — Google for Developers（Google Identity） — https://developers.google.com/identity/protocols/oauth2?hl=en — 最終更新 2026-10-29 — 取得: 2026-11-19 — 原文: 読んだ
 - [S11] Videos: insert（日本語版。言語指定なしのURLで日本語版が表示された） — Google for Developers — https://developers.google.com/youtube/v3/docs/videos/insert — 最終更新の表示 2026-10-15 — 取得: 2026-11-19 — 原文: 読んだ
+- [S12] Add custom thumbnails on YouTube — YouTube ヘルプ — https://support.google.com/youtube/answer/72431?hl=en — 更新日不明 — 取得: 2026-11-19 — 原文: 読んだ
