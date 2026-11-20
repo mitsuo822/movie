@@ -3,7 +3,7 @@
 > 対象: YouTube の Content ID による著作権の申し立て（claim）と、著作権侵害の警告（strike）の違い、異議申し立て・再審査請求の流れ、収益への影響、3回でチャンネル停止になるルール、フリーBGMなどへの誤った申し立ての扱い。
 > 使う場面: BGM・効果音・素材を選ぶとき、非公開アップロード後に申し立てを確認するとき、申し立てや警告を受けたとき。
 > 調査日: 2026-11-19 ／ mc_version: 該当なし（Minecraft の映像・音楽の権利は [Mojang利用ガイドライン.md](https://github.com/mitsuo822/minecraft_physics/blob/main/knowledge/rights/Mojang利用ガイドライン.md) と [マイクラ音楽の使用.md](https://github.com/mitsuo822/minecraft_physics/blob/main/knowledge/rights/マイクラ音楽の使用.md) を参照）
-> 関連: [ショートの仕様.md](ショートの仕様.md), [収益化の条件.md](収益化の条件.md), [../audio/BGMと効果音.md](../audio/BGMと効果音.md), [../legal/引用と著作権.md](../legal/引用と著作権.md), [チャプター・カード・終了画面.md](チャプター・カード・終了画面.md)
+> 関連: [ショートの仕様.md](ショートの仕様.md), [収益化の条件.md](収益化の条件.md), [../audio/BGMと効果音.md](../audio/BGMと効果音.md), [../legal/引用と著作権.md](../legal/引用と著作権.md), [チャプター・カード・終了画面.md](チャプター・カード・終了画面.md), [マイクラ音楽の使用.md（minecraft_physics）](https://github.com/mitsuo822/minecraft_physics/blob/main/knowledge/rights/マイクラ音楽の使用.md)（Minecraft の曲と申し立て）
 
 ## 要点
 - Content ID は著作権者が送ったファイルのデータベースと照合する自動識別システムで、アップロードされた動画は自動的にスキャンされる。 【一次】[S1]
@@ -158,6 +158,9 @@ YouTube 側の公式説明で、誤った申し立てに関係するのは次の
 - 誤った申し立てを繰り返す申立人は Content ID へのアクセスを無効にされることがある。 【一次】[S1]
 - 申立人に見覚えがなくても無効とは限らない。 【一次】[S2]
 
+ライセンスを買った曲でも、曲に含まれるサンプルの権利処理が済んでいないと申し立てを受けた事例がある（Wikipedia の記述）。 【二次】[S8]
+- 2019年5月、Minecraft の YouTuber の Mumbo Jumbo の多数の動画が、イントロの曲に含まれるサンプルを理由に Warner Chappell から申し立てを受けた。Mumbo Jumbo はその曲のライセンスを買っていたが、サンプルの権利処理がされていなかった。申し立ては約1800件。 【二次】[S8]
+
 フリーBGMサイト側の規約（DOVA-SYNDROME など）は原文を読めていないため、この節には事実として書かない。検索要約で得た内容は『わかっていないこと・要確認』の節に置く。BGM・効果音の選び方と規約の詳細は [../audio/BGMと効果音.md](../audio/BGMと効果音.md) で扱う。
 
 ### 日本語ヘルプの注意
@@ -194,3 +197,4 @@ YouTube 側の公式説明で、誤った申し立てに関係するのは次の
 - [S5] 著作権の申し立てに対して異議申し立てが行われている間の収益化 — YouTube ヘルプ — https://support.google.com/youtube/answer/7000961?hl=ja — 更新日不明 — 取得: 2026-11-19 — 原文: 読んだ
 - [S6] Using on YouTube｜Free BGM DOVA-SYNDROME — DOVA-SYNDROME — https://dova-s.jp/en/help/articles/youtube/ — 更新日不明 — 取得: 2026-11-19 — 原文: 検索要約のみ
 - [S7] DOVA-SYNDROME ヘルプ（YouTube での利用・日本語版） — DOVA-SYNDROME — https://dova-s.jp/help/articles/youtube/ — 更新日不明 — 取得: 2026-11-19（opentracks.com へ転送されプロキシで拒否） — 原文: 検索要約のみ
+- [S8] Warner Chappell Music — Wikipedia（英語） — https://en.wikipedia.org/wiki/Warner_Chappell_Music — 2026-10-27（最終版） — 取得: 2026-11-19 — 原文: 読んだ
